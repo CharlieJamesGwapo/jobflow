@@ -3,3 +3,4 @@ dist
 jobs.db
 jobs.db-*
 *.log
+config.bat

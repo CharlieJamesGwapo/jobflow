@@ -4,6 +4,33 @@ A full-stack web app to track your job hunt end to end: from saved postings to s
 
 ![Stack](https://img.shields.io/badge/React_19-TypeScript-3178c6) ![Backend](https://img.shields.io/badge/Express_5-SQLite-7c6cff)
 
+![Dashboard](docs/dashboard.png)
+
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Browser["Browser"]
+        UI["React SPA<br/>Dashboard · Table · Board"]
+    end
+
+    subgraph Server["Server"]
+        E["Express :3001<br/>REST routes"]
+        S[("SQLite jobs.db<br/>WAL mode")]
+        E --> S
+    end
+
+    UI -->|"fetch /api/*"| E
+```
+
+Full write-ups with 11 diagrams (request lifecycles, module graph, data model, state machine, deployment) live in **[ARCHITECTURE.md](ARCHITECTURE.md)**.
+
+| Layer | Tech | Role |
+| --- | --- | --- |
+| Frontend | React 19 + TypeScript + Tailwind 4 | Three views: dashboard, table, kanban |
+| API | Express 5 | REST: jobs CRUD, stats, seed |
+| DB | SQLite (`better-sqlite3`, WAL) | Single `jobs` table, zero config |
+
 ## Features
 
 | View | What you get |
@@ -75,3 +102,9 @@ job-tracker/
 | `npm run dev` / `npm run server` | Either side alone |
 | `npm run build` | Type-check + production bundle |
 | `npm run lint` | oxlint |
+
+## More views
+
+| Applications table | Kanban board |
+| --- | --- |
+| ![Applications](docs/applications.png) | ![Board](docs/board.png) |
