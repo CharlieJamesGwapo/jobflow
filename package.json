@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node init && vite",
+    "dev": "vite",
     "server": "tsx watch server/index.ts",
-    "dev:all": "node init && concurrently \"npm:server\" \"npm:dev\"",
-    "build": "node init && tsc -b && vite build",
+    "dev:all": "concurrently \"npm:server\" \"npm:dev\"",
+    "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
